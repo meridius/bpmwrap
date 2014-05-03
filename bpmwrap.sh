@@ -6,9 +6,10 @@
 function help() {
 	less <<< 'BPMWRAP
 
-Description:   
-	Wrapper for bpm-tag and several audio tagging utilities for BPM 
-	(beats per minute) processing.
+Description:
+	This BASH script is a wrapper for bpm-tag utility of bpm-tools and several 
+	audio tagging utilities. The purpose is to make BPM (beats per minute) 
+	tagging as easy as possible.  
 	Default behaviour is to look through working directory for *.mp3 files 
 	and compute and print their BPM in the following manner: 
 		[current (if any)] [computed] [filename]
@@ -47,6 +48,12 @@ Options:
 
 License:
 	GPL V2
+
+Links:
+	bpm-tools (http://www.pogo.org.uk/~mark/bpm-tools/)
+
+Dependencies:
+	bpm-tag mid3v2 vorbiscomment metaflac
 
 Author:
 	Martin Lukeš (martin.meridius@gmail.com)
@@ -194,7 +201,13 @@ fi
 declare SEP=" "
 [ "$c" ] && SEP=";"
 
+
 # ======================= VARIABLES AND ERROR CONTROLL ========================
+
+#NOTE Remove what requisities you don't need but don't try to use them after!
+#         always  mp3/flac     ogg       flac     
+REQUIRES="bpm-tag mid3v2 vorbiscomment metaflac"
+which $REQUIRES > /dev/null || { echo "These binaries are required: $REQUIRES" >&2 ; exit 1; }
 
 TYPESALLOWED=("mp3" "ogg" "flac")
 

@@ -2,7 +2,7 @@ bpmwrap - BPM tagging made easier
 =======
 
 ## Description:   
-Wrapper for bpm-tag and several audio tagging utilities for BPM (beats per minute) processing.  
+This BASH script is a wrapper for bpm-tag utility of [bpm-tools](http://www.pogo.org.uk/~mark/bpm-tools/) and several audio tagging utilities. The purpose is to make BPM (beats per minute) tagging as easy as possible.  
 Default behaviour is to look through working directory for *.mp3 files and compute and print their BPM in the following manner:  
 ```
 [current (if any)] [computed] [filename]
