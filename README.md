@@ -12,14 +12,14 @@ Default behaviour is to look through working directory for *.mp3 files and compu
 ```
 bpmwrap [options] [directory or filenames]
 ```
+You can specify files to process by one of these ways:  
+- state files and/or directories containing them after options  
+- specify --import file  
+- specify --input file  
+
+With either way you still can filter the resulting list using --type option(s). Remember that the script will process only mp3 files by default, unless specified otherwise!  
 
 ## Options:
-	You can specify files to process by one of these ways:  
-		1. state files and/or directories containing them after options
-		2. specify --import file
-		3. specify --input file
-	With either way you still can filter the resulting list using --type option(s).  
-	Remember that the script will process only mp3 files by default, unless specified otherwise!  
 
 - -i, --import file  
 	Use this option to set BPM tag for all files in given file instead of computing it. Expected format of every row is BPM number and absolute path to filename separated by semicolon like so:
