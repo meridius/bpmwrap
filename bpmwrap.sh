@@ -64,6 +64,11 @@ Options:
 	-h, --help
 		Show this help.
 
+Note:
+	Program bpm-tag (on whis is this script based) is looking only for lowercase 
+	file extensions. If you get 0 (zero) BPM, this should be the case. So just 
+	rename the file.
+
 License:
 	GPL V2
 
@@ -287,12 +292,13 @@ if [ "$i" ] ; then # just parse given file list and set BPM to listed files
 			bpm="${row%%;*}"
 			file="${row#*;}"
 			ext="${file##*.}"
+			ext="${ext,,}" # convert to lowercase
 			if [ -f "$file" ] ; then
 				if [ $(inArray $ext INPUTTYPES[@]) -eq 0 ] ; then 
 					FILES=("${FILES[@]}" "$file")
 					BPMIMPORT["$file"]="$bpm"
 				else
-					myEcho "Skipping file on row $rownumber (unwanted filetype) ... $file"
+					myEcho "Skipping file on row $rownumber (unwanted filetype $ext) ... $file"
 				fi
 			else
 				myEcho "Skipping non-existing file $file"
@@ -306,12 +312,13 @@ elif [ "$n" ] ; then # get files from file list
 	if [ -f "$n" ] ; then
 		rownumber=1
 		while read file ; do
-			if [ -f $file ] ; then
+			if [ -f "$file" ] ; then
 				ext="${file##*.}"
+				ext="${ext,,}" # convert to lowercase
 				if [ $(inArray $ext INPUTTYPES[@]) -eq 0 ] ; then 
 					FILES=("${FILES[@]}" "$file")
 				else
-					myEcho "Skipping file on row $rownumber (unwanted filetype) ... $file"
+					myEcho "Skipping file on row $rownumber (unwanted filetype $ext) ... $file"
 				fi
 			else
 				myEcho "Skipping file on row $rownumber (non-existing) ... $file"
@@ -324,7 +331,7 @@ elif [ "$n" ] ; then # get files from file list
 		exit 1
 	fi
 else # get files from given parameters
-	[ ${#INPUTFILES} -eq 0 ] && INPUTFILES=`pwd`
+	[ ${#INPUTFILES[@]} -eq 0 ] && INPUTFILES=`pwd`
 	for file in "${INPUTFILES[@]}" ; do
 		[ ! -e "$file" ] && {
 			myEcho "File or directory $file does not exist!"

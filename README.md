@@ -52,6 +52,8 @@ With either way you still can filter the resulting list using --type option(s). 
 - -h, --help  
 	Show this help.
 
+## Note:
+	Program bpm-tag (on whis is this script based) is looking only for lowercase file extensions. If you get 0 (zero) BPM, this should be the case. So just rename the file.
 
 ## Thank you
 This script is based on kolypto's work published at http://superuser.com/a/129157/137326
