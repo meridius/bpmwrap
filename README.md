@@ -1,14 +1,14 @@
 bpmwrap - BPM tagging made easier
 =======
 
-## Description:   
+## Description
 This BASH script is a wrapper for bpm-tag utility of [bpm-tools](http://www.pogo.org.uk/~mark/bpm-tools/) and several audio tagging utilities. The purpose is to make BPM (beats per minute) tagging as easy as possible.  
 Default behaviour is to look through working directory for *.mp3 files and compute and print their BPM in the following manner:  
 ```
 [current (if any)] [computed] [filename]
 ```
 
-## Usage:
+## Usage
 ```
 bpmwrap [options] [directory or filenames]
 ```
@@ -19,7 +19,7 @@ You can specify files to process by one of these ways:
 
 With either way you still can filter the resulting list using --type option(s). Remember that the script will process only mp3 files by default, unless specified otherwise!  
 
-## Options:
+## Options
 
 - -i, --import file  
 	Use this option to set BPM tag for all files in given file instead of computing it. Expected format of every row is BPM number and absolute path to filename separated by semicolon like so:
@@ -52,8 +52,10 @@ With either way you still can filter the resulting list using --type option(s). 
 - -h, --help  
 	Show this help.
 
-## Note:
+## Notes
 Program bpm-tag (on whis is this script based) is looking only for lowercase file extensions. If you get 0 (zero) BPM, this should be the case. So just rename the file.
+
+Aside from mentioned dependencies, you may also need to install `libsox-fmt-mp3` on Debian or simply `sox` package on Arch-based  distros.
 
 ## Thank you
 This script is based on kolypto's work published at http://superuser.com/a/129157/137326
